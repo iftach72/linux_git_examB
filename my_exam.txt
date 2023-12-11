@@ -1,0 +1,292 @@
+Exam 1 - Git with Linux - Oct 23
+
+In this section, you are only allowed to use the terminal (or cmd). When editing files you can
+use whatever editor you prefer.
+Note, you will be tested on the quality of your use of git - when to commit is up to you. Make
+it so it makes sense.
+Submit:
+● A plain text file with your answers separated into numbered questions. Include the
+commands you used and the terminal output.
+● A link to your GitHub repo (it should be public, after the exam you can make it private)
+** Remember that the man command can be used to view more information about
+commands. Recommended: Read all of the questions first before running commands.
+___________________________________________________________________________
+Instructions and Questions:
+1. In this assignment you will be working with a premade repository on GitHub: Repo link.
+You will need to fork the repository before you start working on it. Go to the link
+provided above, click Fork:
+
+Then, choose a name for this repository, on your GitHub, and remove the checkbox:
+
+As we have a few branches we would like to fork. A fork is essentially your own copy of
+the repository where you can make changes without affecting the original repository.
+
+
+
+2. After forking the repository, go to your fork on GitHub. It should be at
+https://github.com/YOUR_USERNAME/REPOSITORY_NAME.Click on the
+"Code" button, then copy the URL provided. Open your terminal, and run the command
+git clone COPIED_URL, replacing COPIED_URL with the URL you just copied.
+This command downloads a copy of your fork to your local machine.
+Perform the tasks as specified in the exam questions within your local clone of the
+forked repository. Commit your changes during the exam, and push them back to
+your fork on GitHub
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB
+$ git clone https://github.com/iftach72/linux_git_examB.git
+Cloning into 'linux_git_examB'...
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 7 (delta 0), reused 7 (delta 0), pack-reused 0
+Receiving objects: 100% (7/7), done.
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB
+$ cd linux_git_examB
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+$ ls
+README.md  text_ops.sh
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+$ cat README.md
+# Example Repository
+
+
+
+
+3. From the main/master branch, Create a new branch called
+feature/add-text-ops-features, and move to it.
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+$ git checkout -b feature/add-text-ops-features
+Switched to a new branch 'feature/add-text-ops-features'
+
+4. Replace the contents of the README.md file, with “# Outputs\n”
+ftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo '# Outputs\n' > README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ cat README.md
+# Outputs\n
+
+5. For the following clauses - create the relevant piece of code on the output of the
+command man sed, then append it to the “text_ops.sh” file (they can be
+one-liners, do NOT over complicate, however, you are allowed to use variables):
+
+a. Code to count the occurrences of the word "pattern" in the man sed output.
+Append (using linux) the count to README.md under the title "## Pattern
+Keyword Count" (which should also be appended to the README.md file).
+(iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo '## Pattern Keyword Count' >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ grep -c pattern man_sed.txt
+14
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ grep -c pattern man_sed.txt >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ cat README.md
+# Outputs\n
+## Pattern Keyword Count
+14
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo 'grep -c pattern man_sed.txt >> README.md' >> text_ops.sh
+
+
+b. Code to extract all command-line options (e.g., -n, --expression) from the man
+sed output. Append (using linux) the list of options to README.md under the
+title "## Command-Line Options" (which should also be appended to the
+README.md file).
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ grep -e '^-' man_sed.txt  >> README.md
+
+
+
+c. Code to extract all example commands from the man sed output (Hint:
+explore the output to understand where to find what you are after). Append
+(using linux) these examples to README.md under the title "## SED Examples"
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ sed -n '/For example/,/\./p' man_sed.txt
+Match every step'th line starting with line first. For example, ''sed -n 1~2p'' will print all the odd-numbered lines in the input stream, and the address 2~5 will match every fifth line, starting with the second. first can be zero; in this case, sed operates as if it were equal to step. (This is an extension.)
+$
+Match the last line.
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo '## SED Examples' >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ sed -n '/For example/,/\./p' man_sed.txt >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo '^C
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo "sed -n '/For example/,/\./p' man_sed.txt >> README.md" >> text_ops.sh
+
+
+
+
+
+d. Code to transform all uppercase letters to lowercase in the man sed output
+(Hint: look at the tr command), then count the number of unique words in the
+transformed text Append (using linux) the count of unique words to the
+README.md file under the title "## Count of Unique Words in Lowercase sed
+Manual" (which should also be appended to the README.md file).
+(which should also be appended to the README.md file).
+$ echo '## Count of Unique Words in Lowercase sed Manual' >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ cat man_sed.txt | tr '[:upper:]' '[:lower:]' >> README.md
+
+e. Code to extract lines from the man sed output that mention regular
+expressions. Additionally, prepend each extracted line with its line number from
+the original man sed output. Append (using linux) this information to
+README.md under the title "## Regular Expressions in SED with Line Numbers"
+(which should also be appended to the README.md file).
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo "## Regular Expressions in SED with Line Numbers" >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ grep -n reg man_sed.txt
+26:-r, --regexp-extended
+27:use extended regular expressions in the script.
+130:s/regexp/replacement/
+131:Attempt to match regexp against the pattern space. If successful, replace that portion matched with replacement. The replacement may contain the special character & to refer to that portion of the pattern space which matched, and the special escapes \1 through \9 to refer to the corresponding matching sub-expressions in the regexp.
+139:Sed commands can be given with no addresses, in which case the command will be executed for all input lines; with one address, in which case the command will only be executed for input lines which match that address; or with two addresses, in which case the command will be executed for all input lines which match the inclusive range of lines starting from the first address and continuing to the second address. Three things to note about address ranges: the syntax is addr1,addr2 (i.e., the addresses are separated by a comma); the line which addr1 matched will always be accepted, even if addr2 selects an earlier line; and if addr2 is a regexp, it will not be tested against the line that addr1 matched.
+153:/regexp/
+154:Match lines matching the regular expression regexp.
+155:\cregexpc
+156:Match lines matching the regular expression regexp. The c may be any character.
+159:Start out in "matched first address" state, until addr2 is found. This is similar to 1,addr2, except that if addr2 matches the very first line of input the 0,addr2 form will be at the end of its range, whereas the 1,addr2 form will still be at the beginning of its range. This works only when addr2 is a regular expression.
+165:POSIX.2 BREs should be supported, but they aren't completely because of performance problems. The \n sequence in a regular expression matches the newline character, and similarly for \a, \t, and other sequences.
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ grep -n reg man_sed.txt >> README.md
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ echo 'grep -n reg man_sed.txt >> README.md' >> text_ops.sh
+
+
+
+f. Code to print the content of the README.md File
+cat README.md
+6. Now, run the script in the “text_ops.sh” file from the terminal.
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ ./text_ops.sh
+
+7. Push your new branch to the remote (the fork you created).
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ git status
+On branch feature/add-text-ops-features
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   text_ops.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        man_sed.txt
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ git add -A
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'text_ops.sh', LF will be replaced by CRLF the next time Git touches it
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ git status
+On branch feature/add-text-ops-features
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        new file:   man_sed.txt
+        modified:   text_ops.sh
+
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ git commit -m "pushing to the fork branch"
+[feature/add-text-ops-features 312ae80] pushing to the fork branch
+ 3 files changed, 430 insertions(+), 1 deletion(-)
+ create mode 100644 man_sed.txt
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ $ git push -u origin feature/add-text-ops-features
+bash: $: command not found
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ git push -u origin feature/add-text-ops-features
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 5.02 KiB | 5.02 MiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+remote:
+remote: Create a pull request for 'feature/add-text-ops-features' on GitHub by visiting:
+remote:      https://github.com/iftach72/linux_git_examB/pull/new/feature/add-text-ops-features
+remote:
+To https://github.com/iftach72/linux_git_examB.git
+ * [new branch]      feature/add-text-ops-features -> feature/add-text-ops-features
+branch 'feature/add-text-ops-features' set up to track 'origin/feature/add-text-ops-features'.
+
+
+
+8. Merge the two branches (feature/add-text-ops-features,
+feature/add-advanced-features) into main/master (seperately!), and push
+the changes to your remote repository. Deal with conflicts as they come. In your
+submission file, write the conflicts you encountered, and how you chose to deal with it.
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (feature/add-text-ops-features)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+$ git merge feature/add-text-ops-features
+Updating ed1977c..312ae80
+Fast-forward
+ README.md   | 244 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ man_sed.txt | 182 +++++++++++++++++++++++++++++++++++++++++++++
+ text_ops.sh |   5 ++
+ 3 files changed, 430 insertions(+), 1 deletion(-)
+ create mode 100644 man_sed.txt
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+$ git merge feature/add-advanced-features
+merge: feature/add-advanced-features - not something we can merge
+
+
+
+
+
+9. Print the repository tree of commits.
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+$ git log --stat --graph
+* commit 312ae8058f5b160232b1eb935161e2bdf24e39fb (HEAD -> main, origin/feature/add-text-ops-features, feature/add-text-ops-features)
+| Author: Iftach Nevo <iftachn@gmail.com>
+| Date:   Mon Dec 11 16:15:15 2023 +0200
+|
+|     pushing to the fork branch
+|
+|  README.md   | 244 +++++++++++++++++++++++++++++++++++++++++++++++++-
+|  man_sed.txt | 182 +++++++++++++++++++++++++++++++++++++
+|  text_ops.sh |   5 ++
+|  3 files changed, 430 insertions(+), 1 deletion(-)
+|
+* commit ed1977c52dcdadca9829b57e88d8e0db73c78914 (origin/main, origin/HEAD)
+  Author: דניאל קפון <=>
+  Date:   Sun Dec 10 12:48:21 2023 +0200
+
+      Initial commit with README and script file
+
+   README.md   | 1 +
+   text_ops.sh | 0
+   2 files changed, 1 insertion(+)
+
+iftac@Nevo7 MINGW64 /c/itc/repos/moedB/linux_git_examB (main)
+
+
+Good luck!
+
+
